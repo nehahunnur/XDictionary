@@ -16,15 +16,19 @@ const App = () => {
 
   // Handle search functionality
   const handleSearch = () => {
-    const foundWord = dictionary.find(
-      (item) => item.word.toLowerCase() === searchTerm.toLowerCase()
-    );
+    if (!searchTerm.trim()) {
+      setDefinition("Word not found in the dictionary.");
+      return;
+    }
+    
+    const foundWord = dictionary.find(item => item.word.toLowerCase() === searchTerm.toLowerCase());
     if (foundWord) {
       setDefinition(foundWord.meaning);
     } else {
       setDefinition("Word not found in the dictionary.");
     }
   };
+  
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
