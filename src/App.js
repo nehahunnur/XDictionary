@@ -20,7 +20,7 @@ const App = () => {
       setDefinition("Word not found in the dictionary.");
       return;
     }
-    
+
     const foundWord = dictionary.find(item => item.word.toLowerCase() === searchTerm.toLowerCase());
     if (foundWord) {
       setDefinition(foundWord.meaning);
@@ -28,7 +28,6 @@ const App = () => {
       setDefinition("Word not found in the dictionary.");
     }
   };
-  
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
@@ -40,9 +39,10 @@ const App = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <button onClick={handleSearch}>Search</button>
-      <p>
-        <strong>Definition:</strong> {definition}
-      </p>
+      <div style={{ marginTop: "20px" }}>
+        <strong>Definition:</strong>
+        <p>{definition}</p>
+      </div>
     </div>
   );
 };
