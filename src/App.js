@@ -16,12 +16,15 @@ const App = () => {
 
   // Handle search functionality
   const handleSearch = () => {
-    if (!searchTerm.trim()) {
+    const trimmedSearchTerm = searchTerm.trim();
+
+    if (!trimmedSearchTerm) {
       setDefinition("Word not found in the dictionary.");
       return;
     }
     
-    const foundWord = dictionary.find(item => item.word.toLowerCase() === searchTerm.toLowerCase());
+    const foundWord = dictionary.find(item => item.word.toLowerCase() === trimmedSearchTerm.toLowerCase());
+    
     if (foundWord) {
       setDefinition(foundWord.meaning);
     } else {
@@ -29,7 +32,6 @@ const App = () => {
     }
   };
   
-
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
       <h1>Dictionary App</h1>
@@ -40,9 +42,10 @@ const App = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <button onClick={handleSearch}>Search</button>
-      <p>
-        <strong>Definition:</strong> {definition}
-      </p>
+      <div style={{ marginTop: "20px" }}>
+        <strong>Definition:</strong>
+        <p>{definition}</p>
+      </div>
     </div>
   );
 };
